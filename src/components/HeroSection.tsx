@@ -33,9 +33,9 @@ const HeroSection = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="text-4xl md:text-6xl font-bold mb-6 leading-tight"
           >
-            AI + Drones + Satellites ={" "}
+            Harnessing AI, Drones & Satellites for{" "}
             <span className="gradient-coral bg-clip-text text-transparent">
-              A Cleaner Ocean
+              a Cleaner Ocean
             </span>
           </motion.h1>
 
@@ -45,8 +45,7 @@ const HeroSection = () => {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="text-xl md:text-2xl mb-8 text-gray-200 max-w-3xl mx-auto"
           >
-            We use AI, drones, and satellite images to detect ocean waste and
-            collaborate with NGOs & governments to clean it.
+            Real-time monitoring and cleanup powered by advanced technology. Together with global communities, we fight ocean pollution for a sustainable future.
           </motion.p>
 
           <motion.div
@@ -56,14 +55,24 @@ const HeroSection = () => {
             className="flex flex-col sm:flex-row gap-4 justify-center items-center"
           >
             <Link to="/dashboard">
-              <Button variant="coral" size="lg" className="text-lg px-8 py-6">
-                View Dashboard
+              <Button size="lg" className="text-lg px-8 py-6 bg-gradient-to-r from-primary to-primary-glow hover:from-primary-glow hover:to-primary transition-all duration-300">
+                Explore Waste Zones
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </Link>
-            <Button variant="outline" size="lg" className="text-lg px-8 py-6 border-white/30 text-white hover:bg-white/10">
-              <Play className="mr-2 h-5 w-5" />
-              Watch Demo
+            <Button 
+              variant="outline" 
+              size="lg" 
+              className="text-lg px-8 py-6 border-white/40 text-white hover:bg-white/10 hover:border-white/60 transition-all duration-300"
+              id="join-mission"
+              onClick={() => {
+                const element = document.getElementById('join-mission-section');
+                if (element) {
+                  element.scrollIntoView({ behavior: 'smooth' });
+                }
+              }}
+            >
+              Join Our Mission
             </Button>
           </motion.div>
         </motion.div>
