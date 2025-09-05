@@ -13,7 +13,7 @@ const Navigation = () => {
     { href: "/", label: "Home" },
     { href: "/dashboard", label: "Dashboard" },
     { href: "/workflow", label: "How It Works" },
-    { href: "/partners", label: "Partners" },
+    { href: "/upload", label: "Upload" },
     { href: "/about", label: "About" },
     { href: "/contact", label: "Contact" },
   ];
@@ -25,7 +25,7 @@ const Navigation = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2 text-xl font-bold text-primary">
             <Waves className="h-6 w-6" />
-            <span>OceanAI</span>
+            <span>Wave Cleanup</span>
           </Link>
 
           {/* Desktop Navigation */}

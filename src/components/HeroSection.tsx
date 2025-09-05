@@ -7,6 +7,7 @@ import oceanHero from "@/assets/ocean-hero.jpg";
 
 const HeroSection = () => {
   return (
+    <div>
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
@@ -102,6 +103,7 @@ const HeroSection = () => {
         </svg>
       </div>
     </section>
+    </div>
   );
 };
 

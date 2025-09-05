@@ -1,3 +1,5 @@
+import Navigation from "@/components/Navigation";
+import Footer from "@/components/Footer";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart";
@@ -43,7 +45,9 @@ const chartConfig = {
 
 const Dashboard = () => {
   return (
-    <div className="min-h-screen bg-background pt-20 pb-12">
+    <div className="min-h-screen bg-background">
+      <Navigation />
+      <div className="pt-20 pb-12">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -266,6 +270,8 @@ const Dashboard = () => {
           </Card>
         </motion.div>
       </div>
+      </div>
+      <Footer />
     </div>
   );
 };

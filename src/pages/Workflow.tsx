@@ -1,7 +1,10 @@
+import Navigation from "@/components/Navigation";
+import Footer from "@/components/Footer";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Satellite, Plane, Brain, BarChart3, Users, Truck } from "lucide-react";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 const workflowSteps = [
   {
@@ -50,7 +53,9 @@ const workflowSteps = [
 
 const Workflow = () => {
   return (
-    <div className="min-h-screen bg-background pt-20 pb-12">
+    <div className="min-h-screen bg-background">
+      <Navigation />
+      <div className="pt-20 pb-12">
       <div className="container mx-auto px-4">
         {/* Header */}
         <motion.div
@@ -172,17 +177,23 @@ const Workflow = () => {
                 Join our mission to clean the oceans through technology and collaboration.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-primary">
-                  View Dashboard
-                </Button>
-                <Button variant="secondary" size="lg">
-                  Become a Partner
-                </Button>
+                <Link to="/dashboard">
+                  <Button variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-primary">
+                    View Dashboard
+                  </Button>
+                </Link>
+                <Link to="/contact">
+                  <Button variant="secondary" size="lg">
+                    Become a Partner
+                  </Button>
+                </Link>
               </div>
             </Card>
           </motion.div>
         </div>
       </div>
+      </div>
+      <Footer />
     </div>
   );
 };
