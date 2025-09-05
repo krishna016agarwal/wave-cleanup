@@ -8,43 +8,43 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Light aqua/blue palette */
-    --background: 190 60% 97%;
-    --foreground: 200 25% 20%;
+    /* Ocean-inspired color palette */
+    --background: 210 25% 98%;
+    --foreground: 215 25% 15%;
 
-    --card: 190 45% 98%;
-    --card-foreground: 200 25% 20%;
+    --card: 210 40% 98%;
+    --card-foreground: 215 25% 15%;
 
-    --popover: 190 45% 98%;
-    --popover-foreground: 200 25% 20%;
+    --popover: 210 40% 98%;
+    --popover-foreground: 215 25% 15%;
 
-    /* Aqua blue primary */
-    --primary: 190 85% 45%;
-    --primary-foreground: 0 0% 100%;
-    --primary-glow: 190 90% 65%;
+    /* Deep ocean blue primary */
+    --primary: 210 85% 25%;
+    --primary-foreground: 210 40% 98%;
+    --primary-glow: 210 85% 45%;
 
-    /* Teal secondary */
-    --secondary: 180 75% 50%;
+    /* Coral accent for impact */
+    --secondary: 15 85% 65%;
     --secondary-foreground: 0 0% 100%;
 
-    --muted: 190 25% 92%;
-    --muted-foreground: 200 15% 50%;
+    --muted: 210 15% 92%;
+    --muted-foreground: 215 15% 45%;
 
-    /* Light teal accent */
-    --accent: 175 80% 60%;
+    /* Teal accent */
+    --accent: 180 75% 35%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 190 45% 98%;
+    --destructive-foreground: 210 40% 98%;
 
-    --border: 190 30% 85%;
-    --input: 190 35% 93%;
-    --ring: 190 85% 50%;
+    --border: 210 20% 88%;
+    --input: 210 20% 95%;
+    --ring: 210 85% 35%;
 
-    /* Aqua gradients */
-    --gradient-ocean: linear-gradient(135deg, hsl(190 85% 45%), hsl(180 90% 55%));
+    /* Ocean gradients */
+    --gradient-ocean: linear-gradient(135deg, hsl(210 85% 25%), hsl(195 90% 35%));
     --gradient-coral: linear-gradient(135deg, hsl(15 85% 65%), hsl(25 95% 55%));
-    --gradient-hero: linear-gradient(to bottom, hsl(190 85% 45% / 0.7), hsl(180 90% 55% / 0.8));
+    --gradient-hero: linear-gradient(to bottom, hsl(210 85% 25% / 0.8), hsl(195 90% 35% / 0.9));
     
     /* Animations */
     --wave-animation: wave 3s ease-in-out infinite;

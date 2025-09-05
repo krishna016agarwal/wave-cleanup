@@ -9,13 +9,6 @@ const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
 
-  const scrollToSection = (elementId: string) => {
-    const element = document.getElementById(elementId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
   const navItems = [
     { href: "/", label: "Home" },
     { href: "/dashboard", label: "Dashboard" },
@@ -50,17 +43,7 @@ const Navigation = () => {
                 {item.label}
               </Link>
             ))}
-            <Button 
-              variant="hero" 
-              size="sm"
-              onClick={() => {
-                if (location.pathname === '/') {
-                  scrollToSection('join-mission-section');
-                } else {
-                  window.location.href = '/#join-mission-section';
-                }
-              }}
-            >
+            <Button variant="hero" size="sm">
               Get Involved
             </Button>
           </div>
@@ -88,18 +71,7 @@ const Navigation = () => {
                     {item.label}
                   </Link>
                 ))}
-                <Button 
-                  variant="hero" 
-                  className="mt-4"
-                  onClick={() => {
-                    setIsOpen(false);
-                    if (location.pathname === '/') {
-                      scrollToSection('join-mission-section');
-                    } else {
-                      window.location.href = '/#join-mission-section';
-                    }
-                  }}
-                >
+                <Button variant="hero" className="mt-4">
                   Get Involved
                 </Button>
               </div>
