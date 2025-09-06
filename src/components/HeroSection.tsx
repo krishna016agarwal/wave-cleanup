@@ -3,20 +3,23 @@ import { Card } from "@/components/ui/card";
 import { ArrowRight, Play } from "lucide-react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import oceanHero from "@/assets/ocean-hero.jpg";
+import video from "../assets/video.mp4"; // Assuming this is your video source
 
 const HeroSection = () => {
   return (
-    <div>
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background Image */}
+      {/* Background Video */}
       <div className="absolute inset-0 z-0">
-        <img
-          src={oceanHero}
-          alt="Ocean underwater scene"
-          className="w-full h-full object-cover"
+        <video
+          src={video}
+          autoPlay
+          muted
+          loop
+          playsInline // Add playsInline for better mobile compatibility
+          className="w-full h-full object-cover" // Ensure video covers the entire container
         />
-        <div className="absolute inset-0 gradient-hero" />
+        {/* Optional: Add an overlay for better text readability */}
+        <div className="absolute inset-0 bg-black opacity-50" />
       </div>
 
       {/* Content */}
@@ -33,7 +36,7 @@ const HeroSection = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="text-4xl md:text-6xl font-bold mb-6 leading-tight"
           >
-            AI + Drones + Satellites ={" "}
+            Harnessing AI, Drones & Satellites for{" "}
             <span className="gradient-coral bg-clip-text text-transparent">
               A Cleaner Ocean
             </span>
@@ -45,7 +48,8 @@ const HeroSection = () => {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="text-xl md:text-2xl mb-8 text-gray-200 max-w-3xl mx-auto"
           >
-            We use AI, drones, and satellite images to detect ocean waste and
+            Drones, satellites, and citizen  provide real-time
+            ocean images  to detect ocean waste and
             collaborate with NGOs & governments to clean it.
           </motion.p>
 
@@ -61,10 +65,17 @@ const HeroSection = () => {
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </Link>
-            <Button variant="outline" size="lg" className="text-lg px-8 py-6 border-white/30 text-white hover:bg-white/10">
-              <Play className="mr-2 h-5 w-5" />
-              Watch Demo
+            <Link to="/upload">
+            <Button
+              variant="outline"
+              size="lg"
+              className="text-lg px-8 py-6 border-white/30 text-white hover:bg-white/10"
+            >
+    
+              Upload The Photo's
+               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
+            </Link>
           </motion.div>
         </motion.div>
 
@@ -80,9 +91,14 @@ const HeroSection = () => {
             { label: "Waste Objects Detected", value: "847K", icon: "🔍" },
             { label: "Cleanup Missions", value: "156", icon: "🚛" },
           ].map((stat, index) => (
-            <Card key={index} className="bg-white/10 backdrop-blur-md border-white/20 p-6 text-center">
+            <Card
+              key={index}
+              className="bg-white/10 backdrop-blur-md border-white/20 p-6 text-center"
+            >
               <div className="text-3xl mb-2">{stat.icon}</div>
-              <div className="text-2xl font-bold text-white mb-1">{stat.value}</div>
+              <div className="text-2xl font-bold text-white mb-1">
+                {stat.value}
+              </div>
               <div className="text-sm text-gray-300">{stat.label}</div>
             </Card>
           ))}
@@ -90,7 +106,7 @@ const HeroSection = () => {
       </div>
 
       {/* Animated waves */}
-      <div className="absolute bottom-0 left-0 w-full">
+      {/* <div className="absolute bottom-0 left-0 w-full">
         <svg
           className="relative block w-full h-16 animate-wave"
           viewBox="0 0 1200 120"
@@ -101,9 +117,8 @@ const HeroSection = () => {
             fill="rgba(255,255,255,0.1)"
           />
         </svg>
-      </div>
+      </div> */}
     </section>
-    </div>
   );
 };
 

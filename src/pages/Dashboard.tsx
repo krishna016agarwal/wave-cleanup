@@ -119,12 +119,12 @@ const Dashboard = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <Card className="h-[500px]">
+            <Card className="h-[520px]">
               <CardHeader>
                 <CardTitle>Global Waste Hotspots</CardTitle>
                 <CardDescription>Real-time waste detection locations</CardDescription>
               </CardHeader>
-              <CardContent className="h-full pb-4">
+              <CardContent className="!h-[300px] pb-4">
                 <WasteMap />
               </CardContent>
             </Card>
@@ -136,7 +136,7 @@ const Dashboard = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
           >
-            <Card className="h-[500px]">
+            <Card className="h-[520px]">
               <CardHeader>
                 <CardTitle>Waste Type Distribution</CardTitle>
                 <CardDescription>Breakdown by material type</CardDescription>

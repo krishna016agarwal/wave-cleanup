@@ -14,6 +14,7 @@ const Navigation = () => {
     { href: "/dashboard", label: "Dashboard" },
     { href: "/workflow", label: "How It Works" },
     { href: "/upload", label: "Upload" },
+    { href: "/partner", label: "Partners" },
     { href: "/about", label: "About" },
     { href: "/contact", label: "Contact" },
   ];

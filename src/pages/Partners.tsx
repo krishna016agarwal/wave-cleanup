@@ -5,6 +5,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
 import { Heart, Users, Globe, CheckCircle, Mail, Phone, Building } from "lucide-react";
 import { motion } from "framer-motion";
+import Navigation from "@/components/Navigation";
 
 const partners = [
   {
@@ -83,6 +84,7 @@ const partnershipBenefits = [
 const Partners = () => {
   return (
     <div className="min-h-screen bg-background pt-20 pb-12">
+        <Navigation></Navigation>
       <div className="container mx-auto px-4">
         {/* Header */}
         <motion.div
