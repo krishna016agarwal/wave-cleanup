@@ -116,19 +116,31 @@ const Upload = () => {
       <Navigation />
       <div className="pt-20 pb-12">
         <div className="container mx-auto px-4">
-          {/* Header */}
+          {/* Enhanced Header */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-center mb-12"
+            className="text-center mb-16"
           >
-            <h1 className="text-5xl font-bold text-foreground mb-6">
-              Upload & <span className="text-primary">Analyze</span>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="mb-8"
+            >
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-6">
+                <div className="w-2 h-2 bg-primary rounded-full animate-pulse" />
+                <span className="text-sm font-medium text-primary">AI-Powered Analysis</span>
+              </div>
+            </motion.div>
+            
+            <h1 className="text-6xl font-bold text-foreground mb-6">
+              Upload & <span className="gradient-text">Analyze</span>
             </h1>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Upload ocean images to detect and classify marine waste using our AI-powered system.
-              Help us identify pollution hotspots and coordinate cleanup efforts.
+            <p className="text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed">
+              Upload ocean images to detect and classify marine waste using our advanced AI-powered system.
+              Help us identify pollution hotspots and coordinate global cleanup efforts in real-time.
             </p>
           </motion.div>
 
@@ -148,12 +160,14 @@ const Upload = () => {
                     </CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-6">
-                    {/* Drop Zone */}
-                    <div
+                    {/* Enhanced Drop Zone */}
+                    <motion.div
                       onDrop={handleDrop}
                       onDragOver={handleDragOver}
-                      className="border-2 border-dashed border-border rounded-lg p-8 text-center hover:border-primary/50 transition-colors cursor-pointer"
+                      className="border-2 border-dashed border-border rounded-xl p-12 text-center hover:border-primary/50 transition-all duration-300 cursor-pointer group hover:bg-primary/5"
                       onClick={() => fileInputRef.current?.click()}
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
                     >
                       <input
                         ref={fileInputRef}
@@ -164,47 +178,79 @@ const Upload = () => {
                       />
                       
                       {previewUrl ? (
-                        <div className="space-y-4">
-                          <img
-                            src={previewUrl}
-                            alt="Preview"
-                            className="max-w-full max-h-48 mx-auto rounded-lg object-cover"
-                          />
-                          <p className="text-sm text-muted-foreground">
-                            {selectedFile?.name} ({(selectedFile?.size || 0 / 1024 / 1024).toFixed(2)} MB)
-                          </p>
-                        </div>
+                        <motion.div 
+                          initial={{ opacity: 0, scale: 0.9 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          transition={{ duration: 0.3 }}
+                          className="space-y-4"
+                        >
+                          <div className="relative">
+                            <img
+                              src={previewUrl}
+                              alt="Preview"
+                              className="max-w-full max-h-48 mx-auto rounded-xl object-cover shadow-lg"
+                            />
+                            <div className="absolute inset-0 bg-black/20 rounded-xl flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                              <div className="bg-white/90 rounded-full p-2">
+                                <Camera className="h-6 w-6 text-primary" />
+                              </div>
+                            </div>
+                          </div>
+                          <div className="space-y-2">
+                            <p className="text-sm font-medium text-foreground">
+                              {selectedFile?.name}
+                            </p>
+                            <p className="text-xs text-muted-foreground">
+                              {(selectedFile?.size || 0 / 1024 / 1024).toFixed(2)} MB
+                            </p>
+                          </div>
+                        </motion.div>
                       ) : (
-                        <div className="space-y-4">
-                          <Camera className="h-16 w-16 text-muted-foreground mx-auto" />
-                          <div>
-                            <p className="text-lg font-medium text-foreground">
+                        <motion.div 
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.3 }}
+                          className="space-y-6"
+                        >
+                          <motion.div
+                            animate={{ y: [0, -5, 0] }}
+                            transition={{ duration: 2, repeat: Infinity }}
+                          >
+                            <Camera className="h-20 w-20 text-primary/60 mx-auto group-hover:text-primary transition-colors duration-300" />
+                          </motion.div>
+                          <div className="space-y-2">
+                            <p className="text-xl font-semibold text-foreground group-hover:text-primary transition-colors duration-300">
                               Drop your image here or click to browse
                             </p>
                             <p className="text-sm text-muted-foreground">
                               Supports JPG, PNG, WebP up to 10MB
                             </p>
                           </div>
-                        </div>
+                          <div className="flex justify-center gap-4 text-xs text-muted-foreground">
+                            <span className="px-2 py-1 bg-muted rounded-full">JPG</span>
+                            <span className="px-2 py-1 bg-muted rounded-full">PNG</span>
+                            <span className="px-2 py-1 bg-muted rounded-full">WebP</span>
+                          </div>
+                        </motion.div>
                       )}
-                    </div>
+                    </motion.div>
 
-                    {/* Action Buttons */}
+                    {/* Enhanced Action Buttons */}
                     <div className="flex gap-4">
                       <Button
                         onClick={analyzeImage}
                         disabled={!selectedFile || isAnalyzing}
-                        className="flex-1"
+                        className="flex-1 bg-gradient-to-r from-primary to-primary-glow hover:from-primary-glow hover:to-primary text-white border-0 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
                       >
                         {isAnalyzing ? (
                           <>
                             <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                            Analyzing...
+                            <span>Analyzing with AI...</span>
                           </>
                         ) : (
                           <>
                             <Image className="mr-2 h-4 w-4" />
-                            Analyze Image
+                            <span>Analyze Image</span>
                           </>
                         )}
                       </Button>
@@ -219,6 +265,7 @@ const Upload = () => {
                           }
                         }}
                         disabled={!selectedFile}
+                        className="hover:bg-destructive/10 hover:border-destructive/20 hover:text-destructive transition-all duration-300"
                       >
                         Clear
                       </Button>

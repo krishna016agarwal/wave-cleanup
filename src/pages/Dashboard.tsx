@@ -59,56 +59,102 @@ const Dashboard = () => {
           <p className="text-muted-foreground">Real-time monitoring of ocean waste across global waters</p>
         </motion.div>
 
-        {/* Key Metrics */}
+        {/* Enhanced Key Metrics */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8"
         >
-          <Card className="gradient-ocean text-white">
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Total Waste Detected</CardTitle>
-              <Waves className="h-4 w-4" />
-            </CardHeader>
-            <CardContent>
-              <div className="text-2xl font-bold">847,329</div>
-              <p className="text-xs text-gray-200">+12.5% from last month</p>
-            </CardContent>
-          </Card>
+          <motion.div
+            whileHover={{ scale: 1.05, y: -5 }}
+            transition={{ duration: 0.2 }}
+          >
+            <Card className="gradient-ocean text-white hover:shadow-2xl transition-all duration-300 border-0">
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium">Total Waste Detected</CardTitle>
+                <motion.div
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+                >
+                  <Waves className="h-5 w-5" />
+                </motion.div>
+              </CardHeader>
+              <CardContent>
+                <div className="text-3xl font-bold mb-1">847,329</div>
+                <div className="flex items-center gap-1">
+                  <TrendingUp className="h-3 w-3 text-green-300" />
+                  <p className="text-xs text-green-300 font-medium">+12.5% from last month</p>
+                </div>
+              </CardContent>
+            </Card>
+          </motion.div>
 
-          <Card>
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Critical Areas</CardTitle>
-              <AlertTriangle className="h-4 w-4 text-destructive" />
-            </CardHeader>
-            <CardContent>
-              <div className="text-2xl font-bold">23</div>
-              <p className="text-xs text-muted-foreground">Requiring immediate action</p>
-            </CardContent>
-          </Card>
+          <motion.div
+            whileHover={{ scale: 1.05, y: -5 }}
+            transition={{ duration: 0.2 }}
+          >
+            <Card className="hover:shadow-xl transition-all duration-300 hover:border-destructive/20">
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium">Critical Areas</CardTitle>
+                <motion.div
+                  animate={{ scale: [1, 1.2, 1] }}
+                  transition={{ duration: 1, repeat: Infinity }}
+                >
+                  <AlertTriangle className="h-5 w-5 text-destructive" />
+                </motion.div>
+              </CardHeader>
+              <CardContent>
+                <div className="text-3xl font-bold mb-1 text-destructive">23</div>
+                <p className="text-xs text-muted-foreground">Requiring immediate action</p>
+              </CardContent>
+            </Card>
+          </motion.div>
 
-          <Card>
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Active Drones</CardTitle>
-              <MapPin className="h-4 w-4 text-accent" />
-            </CardHeader>
-            <CardContent>
-              <div className="text-2xl font-bold">156</div>
-              <p className="text-xs text-muted-foreground">Monitoring ocean areas</p>
-            </CardContent>
-          </Card>
+          <motion.div
+            whileHover={{ scale: 1.05, y: -5 }}
+            transition={{ duration: 0.2 }}
+          >
+            <Card className="hover:shadow-xl transition-all duration-300 hover:border-accent/20">
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium">Active Drones</CardTitle>
+                <motion.div
+                  animate={{ y: [0, -5, 0] }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                >
+                  <MapPin className="h-5 w-5 text-accent" />
+                </motion.div>
+              </CardHeader>
+              <CardContent>
+                <div className="text-3xl font-bold mb-1 text-accent">156</div>
+                <p className="text-xs text-muted-foreground">Monitoring ocean areas</p>
+              </CardContent>
+            </Card>
+          </motion.div>
 
-          <Card>
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Cleanup Efficiency</CardTitle>
-              <TrendingUp className="h-4 w-4 text-secondary" />
-            </CardHeader>
-            <CardContent>
-              <div className="text-2xl font-bold">78%</div>
-              <p className="text-xs text-muted-foreground">+5% improvement</p>
-            </CardContent>
-          </Card>
+          <motion.div
+            whileHover={{ scale: 1.05, y: -5 }}
+            transition={{ duration: 0.2 }}
+          >
+            <Card className="hover:shadow-xl transition-all duration-300 hover:border-secondary/20">
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium">Cleanup Efficiency</CardTitle>
+                <motion.div
+                  animate={{ rotate: [0, 5, -5, 0] }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                >
+                  <TrendingUp className="h-5 w-5 text-secondary" />
+                </motion.div>
+              </CardHeader>
+              <CardContent>
+                <div className="text-3xl font-bold mb-1 text-secondary">78%</div>
+                <div className="flex items-center gap-1">
+                  <TrendingUp className="h-3 w-3 text-green-500" />
+                  <p className="text-xs text-green-500 font-medium">+5% improvement</p>
+                </div>
+              </CardContent>
+            </Card>
+          </motion.div>
         </motion.div>
 
         {/* Charts and Map */}

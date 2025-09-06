@@ -5,7 +5,9 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, Satellite, Plane, Brain, BarChart3, Users, Truck, Upload, Globe } from "lucide-react"; // Added Upload and Globe for icons
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import JoinMission from "../components/joinMission";
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
+import JoinMission from "../components/JoinMission";
 
 const workflowSteps = [
   {
@@ -53,6 +55,16 @@ const workflowSteps = [
 ];
 
 const Workflow = () => {
+    const location = useLocation();
+
+  useEffect(() => {
+    if (location.hash) {
+      const element = document.querySelector(location.hash);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  }, [location]);
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
@@ -67,7 +79,7 @@ const Workflow = () => {
           >
             <h1 className="text-4xl font-bold text-foreground mb-4">How It Works</h1>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Our AI-powered system combines cutting-edge technology with global collaboration 
+              Our AI-powered system combines cutting-edge technology with global collaboration
               to detect, track, and facilitate the cleanup of ocean waste.
             </p>
           </motion.div>
@@ -93,7 +105,7 @@ const Workflow = () => {
                       <p className="text-muted-foreground">{step.description}</p>
                     </CardContent>
                   </Card>
-                  
+
                   {/* Arrow connector for desktop */}
                   {index < workflowSteps.length - 1 && (
                     <div className="hidden xl:block absolute top-1/2 -right-4 z-10">
@@ -193,8 +205,9 @@ const Workflow = () => {
             </motion.div>
 
             {/* Join Our Mission Section */}
-            <JoinMission />
-
+            <section id="contact">
+              <JoinMission />
+            </section>
           </div>
         </div>
       </div>

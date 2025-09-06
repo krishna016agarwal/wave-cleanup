@@ -5,6 +5,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
 import { Heart, Users, Globe, CheckCircle, Mail, Phone, Building } from "lucide-react";
 import { motion } from "framer-motion";
+import { useState } from "react"; // ⬅️ add at top of file
 import Navigation from "@/components/Navigation";
 
 const partners = [
@@ -82,6 +83,49 @@ const partnershipBenefits = [
 ];
 
 const Partners = () => {
+  const [formData, setFormData] = useState({
+  organizationName: "",
+  organizationType: "NGO",
+  email: "",
+  phoneNumber: "",
+  primaryFocusAreas: "",
+  organizationDescription: "",
+  expectedUseCase: "",
+});
+
+const handleChange = (e) => {
+  const { name, value } = e.target;
+  setFormData((prev) => ({ ...prev, [name]: value }));
+};
+
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  try {
+    const res = await fetch("http://localhost:4000/api/organizations", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formData),
+    });
+
+    if (!res.ok) throw new Error("Failed to submit");
+    const data = await res.json();
+    alert("✅ Application submitted successfully!");
+    console.log("Saved org:", data);
+
+    setFormData({
+      organizationName: "",
+      organizationType: "NGO",
+      email: "",
+      phoneNumber: "",
+      primaryFocusAreas: "",
+      organizationDescription: "",
+      expectedUseCase: "",
+    });
+  } catch (err) {
+    console.error(err);
+    alert("❌ Something went wrong.");
+  }
+};
   return (
     <div className="min-h-screen bg-background pt-20 pb-12">
         <Navigation></Navigation>
@@ -175,82 +219,119 @@ const Partners = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
         >
-          <Card className="max-w-2xl mx-auto">
-            <CardHeader className="text-center">
-              <CardTitle className="text-2xl">Apply for Partnership</CardTitle>
-              <CardDescription>
-                Join our global network of organizations working to clean our oceans
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <label className="text-sm font-medium">Organization Name</label>
-                  <Input placeholder="Enter organization name" />
-                </div>
-                <div className="space-y-2">
-                  <label className="text-sm font-medium">Organization Type</label>
-                  <select className="w-full p-2 border border-border rounded-md bg-background">
-                    <option>NGO</option>
-                    <option>Government Agency</option>
-                    <option>Research Institution</option>
-                    <option>Private Foundation</option>
-                  </select>
-                </div>
-              </div>
+         <Card className="max-w-2xl mx-auto">
+  <CardHeader className="text-center">
+    <CardTitle className="text-2xl">Apply for Partnership</CardTitle>
+    <CardDescription>
+      Join our global network of organizations working to clean our oceans
+    </CardDescription>
+  </CardHeader>
+  <CardContent>
+    <form onSubmit={handleSubmit} className="space-y-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="space-y-2">
+          <label className="text-sm font-medium">Organization Name</label>
+          <Input
+            name="organizationName"
+            value={formData.organizationName}
+            onChange={handleChange}
+            placeholder="Enter organization name"
+          />
+        </div>
+        <div className="space-y-2">
+          <label className="text-sm font-medium">Organization Type</label>
+          <select
+            name="organizationType"
+            value={formData.organizationType}
+            onChange={handleChange}
+            className="w-full p-2 border border-border rounded-md bg-background"
+          >
+            <option value="NGO">NGO</option>
+            <option value="Government">Government</option>
+            <option value="Corporate">Corporate</option>
+            <option value="Startup">Startup</option>
+          </select>
+        </div>
+      </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <label className="text-sm font-medium">Contact Email</label>
-                  <div className="relative">
-                    <Mail className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
-                    <Input placeholder="contact@organization.org" className="pl-10" />
-                  </div>
-                </div>
-                <div className="space-y-2">
-                  <label className="text-sm font-medium">Phone Number</label>
-                  <div className="relative">
-                    <Phone className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
-                    <Input placeholder="+1 (555) 123-4567" className="pl-10" />
-                  </div>
-                </div>
-              </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="space-y-2">
+          <label className="text-sm font-medium">Contact Email</label>
+          <div className="relative">
+            <Mail className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+            <Input
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              placeholder="contact@organization.org"
+              className="pl-10"
+            />
+          </div>
+        </div>
+        <div className="space-y-2">
+          <label className="text-sm font-medium">Phone Number</label>
+          <div className="relative">
+            <Phone className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+            <Input
+              name="phoneNumber"
+              value={formData.phoneNumber}
+              onChange={handleChange}
+              placeholder="+1 (555) 123-4567"
+              className="pl-10"
+            />
+          </div>
+        </div>
+      </div>
 
-              <div className="space-y-2">
-                <label className="text-sm font-medium">Primary Focus Areas</label>
-                <div className="relative">
-                  <Building className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
-                  <Input placeholder="e.g., Pacific Ocean, Coastal Cleanup, Marine Research" className="pl-10" />
-                </div>
-              </div>
+      <div className="space-y-2">
+        <label className="text-sm font-medium">Primary Focus Areas</label>
+        <div className="relative">
+          <Building className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+          <Input
+            name="primaryFocusAreas"
+            value={formData.primaryFocusAreas}
+            onChange={handleChange}
+            placeholder="e.g., Pacific Ocean, Coastal Cleanup, Marine Research"
+            className="pl-10"
+          />
+        </div>
+      </div>
 
-              <div className="space-y-2">
-                <label className="text-sm font-medium">Organization Description</label>
-                <Textarea 
-                  placeholder="Describe your organization's mission, current projects, and how you plan to use our platform..."
-                  rows={4}
-                />
-              </div>
+      <div className="space-y-2">
+        <label className="text-sm font-medium">Organization Description</label>
+        <Textarea
+          name="organizationDescription"
+          value={formData.organizationDescription}
+          onChange={handleChange}
+          placeholder="Describe your organization's mission..."
+          rows={4}
+        />
+      </div>
 
-              <div className="space-y-2">
-                <label className="text-sm font-medium">Expected Use Case</label>
-                <Textarea 
-                  placeholder="How do you plan to use our ocean waste detection data? What are your cleanup goals?"
-                  rows={3}
-                />
-              </div>
+      <div className="space-y-2">
+        <label className="text-sm font-medium">Expected Use Case</label>
+        <Textarea
+          name="expectedUseCase"
+          value={formData.expectedUseCase}
+          onChange={handleChange}
+          placeholder="How do you plan to use our platform?"
+          rows={3}
+        />
+      </div>
 
-              <Button className="w-full gradient-ocean text-white" size="lg">
-                Submit Partnership Application
-              </Button>
+      <Button type="submit" className="w-full gradient-ocean text-white" size="lg">
+        Submit Partnership Application
+      </Button>
 
-              <div className="text-center text-sm text-muted-foreground">
-                Applications are typically reviewed within 5-7 business days.
-                <br />
-                For urgent requests, contact us directly at partners@oceanai.org
-              </div>
-            </CardContent>
-          </Card>
+      <div className="text-center text-sm text-muted-foreground">
+        Applications are typically reviewed within 5-7 business days.
+        <br />
+        For urgent requests, contact us directly at partners@oceanai.org
+      </div>
+    </form>
+  </CardContent>
+</Card>
+
         </motion.div>
       </div>
     </div>
